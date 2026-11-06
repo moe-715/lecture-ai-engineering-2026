@@ -1,7 +1,6 @@
 # 第3回 解答
 
 ## 演習
-
 - 第1回（素のLLM）とエージェントの回答の違い：data/glossary.jsonの中の内容を用いて回答している
 - `--trace` で見えたツール呼び出し（ツール名と引数）：ツール名 search_glossary、引数 query
 - 1つの質問での LLM 呼び出し回数（`requests`）：2回
@@ -25,8 +24,13 @@
         引数: {"lecture": {"type": "integer"}}
 
 ## 宿題
-
-- 取り組んだレベル：基礎 / 実装 / 発展
+- 取り組んだレベル：基礎
 - やったこと：
+    - app/agent.py の"INSTRUCTIONS"と、app/tools.pyの"docstring"を1か所ずつ変更し、同じ質問(uv run python -m app.agent --trace "LoRAとQLoRAの違いは？")をして比較
+    - 「必ず search_glossary で用語集を確認する」→「必要に応じて search_glossary で用語集を確認する」
+    - 「query には調べたい用語を1つだけ入れる」→「query には調べたい用語をまとめて入れてもよいが、できるだけ1つの用語に絞る」
 - 結果：
-- 気づき・疑問：
+  - LoRAとQLoRA、search_glossaryが変わらず2回呼ばれてた
+  - docstringにて、言い回しを変更したが、同じような回答となった
+- 気づき：
+  - 必要に応じて...できるだけ...のような言い回しはあまり効かない？言い回しよりも、具体的なツール使用方法みたいなところのが重要かと思われる
